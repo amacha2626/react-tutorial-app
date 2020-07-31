@@ -5,9 +5,9 @@ import Title from './components/Title'
 
 class App extends Component {
   onClickHandler = () => {
-    let title = document.getElementById('versionStatement')
+    let title = document.getElementById('versionCounter')
     let upgradeButton = document.getElementById('upgradeButton')
-    title.textContent = "Hello World 4.0"
+    title.textContent = "4.0"
     upgradeButton.style.display = "none"
   }
 
