@@ -4,14 +4,26 @@ import './App.css';
 import Title from './components/Title/Title'
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = { version: '1.0'}
+  }
+
   onClickHandler = () => {
-    let title = document.getElementById('versionCounter')
-    let upgradeButton = document.getElementById('upgradeButton')
-    title.textContent = "4.0"
-    upgradeButton.style.display = "none"
+    // let title = document.getElementById('versionCounter')
+    // let upgradeButton = document.getElementById('upgradeButton')
+    // title.textContent = "4.0"
+    // upgradeButton.style.display = "none"
+
+    let nextVersion = parseInt(this.state.version, 10) + 1
+    this.setState({ version: nextVersion.toFixed(1)})
   }
 
   render() {
+    if(parseInt(this.state.version, 10) > 1){
+      console.log("新しいバージョンは" + this.state.version + "です。")
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -21,7 +33,10 @@ class App extends Component {
             titleStyle={{color: '#56D6FB'}} 
             onClick={this.onClickHandler}
           >
-            Hello World <span id="versionCounter" style={{ borderBottom: '1px solid orange'}}>3.0</span>
+            Hello World
+            <span id="versionCounter" style={{ borderBottom: '1px solid orange'}}>
+              { this.state.version }
+            </span>
           </Title>
           <a
             className="App-link"
