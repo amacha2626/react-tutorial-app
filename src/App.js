@@ -10,18 +10,25 @@ class App extends Component {
   }
 
   onClickHandler = () => {
-    // let title = document.getElementById('versionCounter')
-    // let upgradeButton = document.getElementById('upgradeButton')
-    // title.textContent = "4.0"
-    // upgradeButton.style.display = "none"
-
     let nextVersion = parseInt(this.state.version, 10) + 1
     this.setState({ version: nextVersion.toFixed(1)})
   }
 
   render() {
-    if(parseInt(this.state.version, 10) > 1){
-      console.log("新しいバージョンは" + this.state.version + "です。")
+    let upgradeButton = (
+      <p
+        onClick={ this.onClickHandler }
+        id="upgradeButton"
+        className="upgrade-button"
+      >Upgrade</p>
+    )
+
+    if( this.state.version === '5.0'){
+      upgradeButton = (
+        <p
+          className="upgraded-button"
+        >Already up-to-date</p>
+      )
     }
 
     return (
@@ -29,15 +36,14 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Title
-            title="Hello, World 3.0"
             titleStyle={{color: '#56D6FB'}} 
-            onClick={this.onClickHandler}
           >
             Hello World
             <span id="versionCounter" style={{ borderBottom: '1px solid orange'}}>
               { this.state.version }
             </span>
           </Title>
+          { upgradeButton }
           <a
             className="App-link"
             href="https://reactjs.org"
